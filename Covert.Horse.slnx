@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Covert.Horse.Api/Covert.Horse.Api.csproj" />
+  <Project Path="Covert.Horse.Domain/Covert.Horse.Domain.csproj" />
+</Solution>
