@@ -1,9 +1,12 @@
-
+using Microsoft.EntityFrameworkCore;
+using Covert.Horse.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddControllers();
+builder.Services.AddDbContext<StoreContext>(opt =>
+    opt.UseInMemoryDatabase("StoreDb"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -14,7 +17,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
-app.MapControllers();
+
 
 app.UseAuthorization();
 
