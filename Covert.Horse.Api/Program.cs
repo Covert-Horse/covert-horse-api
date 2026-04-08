@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StoreContext>(opt =>
-    opt.UseInMemoryDatabase("StoreDb"));
+    opt.UseSqlite("Data Source=store.db"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
