@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Covert.Horse.Domain.Catalog;
+using Covert.Horse.Api.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Covert.Horse.Api.Controllers
 {
@@ -7,23 +9,26 @@ namespace Covert.Horse.Api.Controllers
     [Route("[controller]")]
     public class CatalogController : ControllerBase
     {
+        private readonly StoreContext _context;
+
+        public CatalogController(StoreContext context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
         public IActionResult GetItems()
         {
-            var items = new List<Item>()
-            {
-                new Item("Shirt", "Ohio State shirts.", "Nike", 29.99m),
-                new Item("Shorts", "Ohio State shorts.", "Nike", 44.98m)
-            };
-
-            return Ok(items);
+            return Ok(_context.Items.ToList());
         }
 
         [HttpGet("{id:int}")]
         public IActionResult GetItem(int id)
         {
-            var item = new Item("Shirt", "Ohio State shirt.", "Nike", 29.99m);
-            item.Id = id;
+            var item = _context.Items.FirstOrDefault(i => i.Id == id);
+
+            if (item == null)
+                return NotFound();
 
             return Ok(item);
         }
@@ -31,28 +36,57 @@ namespace Covert.Horse.Api.Controllers
         [HttpPost]
         public IActionResult Post(Item item)
         {
-            return Created("/catalog/42", item);
+            _context.Items.Add(item);
+            _context.SaveChanges();
+
+            return Created($"/catalog/{item.Id}", item);
         }
 
         [HttpPost("{id:int}/rating")]
         public IActionResult PostRating(int id, [FromBody] Rating rating)
         {
-            var item = new Item("Shirt", "Ohio state shirt.", "Nike", 29.99m);
-            item.Id = id;
+            var item = _context.Items
+                .Include(i => i.Ratings)
+                .FirstOrDefault(i => i.Id == id);
+
+            if (item == null)
+                return NotFound();
+
             item.AddRating(rating);
+            _context.SaveChanges();
 
             return Ok(item);
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult Put(int id, Item item)
+        public IActionResult Put(int id, Item updatedItem)
         {
+            var item = _context.Items.FirstOrDefault(i => i.Id == id);
+
+            if (item == null)
+                return NotFound();
+
+            item.Name = updatedItem.Name;
+            item.Description = updatedItem.Description;
+            item.Brand = updatedItem.Brand;
+            item.Price = updatedItem.Price;
+
+            _context.SaveChanges();
+
             return NoContent();
         }
 
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {
+            var item = _context.Items.FirstOrDefault(i => i.Id == id);
+
+            if (item == null)
+                return NotFound();
+
+            _context.Items.Remove(item);
+            _context.SaveChanges();
+
             return NoContent();
         }
     }
