@@ -3,5 +3,6 @@
     <Project Path="tests/Covert.Horse.Domain.Tests/Covert.Horse.Domain.Tests.csproj" />
   </Folder>
   <Project Path="Covert.Horse.Api/Covert.Horse.Api.csproj" />
+  <Project Path="Covert.Horse.Domain.Tests/Covert.Horse.Domain.Tests.csproj" />
   <Project Path="Covert.Horse.Domain/Covert.Horse.Domain.csproj" />
 </Solution>
