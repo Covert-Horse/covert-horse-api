@@ -13,6 +13,11 @@ public class Rating
             throw new ArgumentException("Stars must be between 1 and 5");
         }
 
+        if (string.IsNullOrWhiteSpace(userName))
+        {
+            throw new ArgumentException("UserName cannot be null or empty");
+        }
+
         Stars = stars;
         UserName = userName;
         Review = review;
