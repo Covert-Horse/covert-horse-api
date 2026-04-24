@@ -1,0 +1,11 @@
+### Get token from Auth0
+POST https://dev-6zxxx2uybj565nbs.us.auth0.com/oauth/token
+Content-Type: application/json
+
+{
+  "client_id": "n1QFDy1YCOtmVFaJTUuXKP4SjlTvekeT",
+  "client_secret": "-sJFQozMBCyMZpwhx9xfmFOMR88i-h7DXacN9eqnr--N-QixIx7BmKWAGX9xvfo-",
+  "audience": "https://covert-horse",
+  "grant_type": "client_credentials"
+}
+

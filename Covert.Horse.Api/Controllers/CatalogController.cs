@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Covert.Horse.Domain.Catalog;
+using Covert.Horse.Api;
 using Covert.Horse.Api.Data;
 using Microsoft.EntityFrameworkCore;
+using Covert.Horse.Domain.Catalog;
 
 namespace Covert.Horse.Api.Controllers
 {
@@ -77,6 +79,7 @@ namespace Covert.Horse.Api.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize("delete:catalog")]
         public IActionResult Delete(int id)
         {
             var item = _context.Items.FirstOrDefault(i => i.Id == id);
