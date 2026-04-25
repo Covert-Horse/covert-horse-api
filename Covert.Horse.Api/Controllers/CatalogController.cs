@@ -90,7 +90,7 @@ namespace Covert.Horse.Api.Controllers
             _context.Items.Remove(item);
             _context.SaveChanges();
 
-            return NoContent();
+            return Ok();
         }
     }
 }

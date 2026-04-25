@@ -2,6 +2,7 @@ using Covert.Horse.Api.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Covert.Horse.Api.Data;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,9 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("delete:catalog", policy =>
         policy.Requirements.Add(new HasScopeRequirements("delete:catalog", authority)));
 });
+
+builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
+
 builder.Services.AddDbContext<StoreContext>(opt =>
     opt.UseSqlite("Data Source=store.db"));
 builder.Services.AddEndpointsApiExplorer();
