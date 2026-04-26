@@ -9,6 +9,19 @@ Content-Type: application/json
   "grant_type": "client_credentials"
 }
 
+### Add item to Catalog
+POST http://localhost:5187/catalog
+Content-Type: application/json
+
+{
+  "name": "Test Item",
+  "description": "Test Description",
+  "brand": "Test Brand",
+  "price": 9.99
+}
+
+
+
 ### DELETE a item from the Catalog Collection
-DELETE http://localhost:5187/catalog/3
+DELETE http://localhost:5187/catalog/1
 Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpZd29EVDdRSThuSUJVbzFoNEUxcCJ9.eyJpc3MiOiJodHRwczovL2Rldi02enh4eDJ1eWJqNTY1bmJzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJuMVFGRHkxWUNPdG1WRmFKVFV1WEtQNFNqbFR2ZWtlVEBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9jb3ZlcnQtaG9yc2UiLCJpYXQiOjE3NzcxMjI3NzEsImV4cCI6MTc3NzIwOTE3MSwic2NvcGUiOiJkZWxldGU6Y2F0YWxvZyIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsImF6cCI6Im4xUUZEeTFZQ090bVZGYUpUVXVYS1A0U2psVHZla2VUIn0.AyELSWHiVmIKOJ_VpMbRLwfOoux0Ntkba_LopbP30AB8XLpNLUjYiOSLOZ70ot23DtlvauECsQ-zjEDU8wHVDsiJRJHRbVIiDbJfkK4iCM5E2S24RuD5e0C5QMUlimScigIhlz7AJx3nZ9XQrfw0iNYZQ3Hy-NXvMfsnGuRjgotFu53JNg67qDou15cxjmdr4ed5Bz9uvAJuY-dvWa8PKFInWi88qA9xy6NPmRm6kPqzOO0ERGIW6cSWLtKAmRUdoY1QjXTGhOma_2kobdrpSfIem8njzItCQJJU14WP9k0nk-NlMAy65Rtndxu9_mzZ3qeRx8ytH5Z1neBDpL8nJg
