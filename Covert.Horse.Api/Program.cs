@@ -5,16 +5,6 @@ using Covert.Horse.Api.Data;
 using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builder =>
-    {
-        builder.WithOrigins("http://localhost:3000")
-               .AllowAnyHeader()
-               .AllowAnyMethod();
-    });
-});
-
 string authority = builder.Configuration["Auth0:Authority"] 
     ?? throw new ArgumentNullException("Auth0:Authority");
 
