@@ -8,6 +8,7 @@ public class Item
     public string Brand { get; set; }
     public decimal Price { get; set; }
 
+    public Item() { }
     public Item(string name, string description, string brand, decimal price)
     {
         if (string.IsNullOrEmpty(name))
